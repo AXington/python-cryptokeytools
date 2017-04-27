@@ -1,5 +1,7 @@
-OpenSSH Public Key Parser for Python
+Crypto Key tools for Python
 ====================================
+Forked from https://github.com/ojarva/python-sshpubkeys
+Special thanks to https://github.com/ojarva for starting this project. This began as a public key parser for SSH keys, but now is being made into tools for more general crypto keys.
 
 .. image:: https://travis-ci.org/ojarva/python-sshpubkeys.svg?branch=master
     :target: https://travis-ci.org/ojarva/python-sshpubkeys
