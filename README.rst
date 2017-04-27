@@ -3,6 +3,8 @@ Crypto Key tools for Python
 Forked from https://github.com/ojarva/python-sshpubkeys
 Special thanks to https://github.com/ojarva for starting this project. This began as a public key parser for SSH keys, but now is being made into tools for more general crypto keys.
 
+All code and the below README is, for a shor time, still in it's original unaltered state. Changes are, however, forthcoming.
+
 .. image:: https://travis-ci.org/ojarva/python-sshpubkeys.svg?branch=master
     :target: https://travis-ci.org/ojarva/python-sshpubkeys
 
