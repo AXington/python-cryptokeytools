@@ -7,8 +7,8 @@ This began as a public key parser for SSH keys, but now is being made into tools
 All code and the below README is, for a shor time, still in it's original unaltered state.
 Changes are, however, forthcoming.
 
-.. image:: https://travis-ci.org/ojarva/python-sshpubkeys.svg?branch=master
-    :target: https://travis-ci.org/ojarva/python-sshpubkeys
+.. image:: https://travis-ci.org/cryptokeytools/cryptokeytools.svg?branch=master
+    :target: https://travis-ci.org/cryptokeytools/cryptokeytools
 
 Native implementation for validating OpenSSH public keys.
 
@@ -20,7 +20,7 @@ Installation:
 
   pip install sshpubkeys
 
-or clone the `repository <https://github.com/ojarva/sshpubkeys>`_ and use
+or clone the `repository <https://github.com/cryptokeytools/cryptokeytools>`_ and use
 
 ::
 
@@ -79,7 +79,7 @@ Exceptions
 Tests
 -----
 
-See "`tests/ <https://github.com/ojarva/sshpubkeys/tree/master/tests>`_" folder for unit tests. Use
+See "`tests/ <https://github.com/cryptokeytools/cryptokeytools/tree/master/tests>`_" folder for unit tests. Use
 
 ::
 
@@ -91,4 +91,4 @@ or
 
   python3 setup.py test
 
-to run test suite. If you have keys that are not parsed properly, or malformed keys that raise incorrect exception, please send your *public key* to olli@jarva.fi, and I'll include it. Alternatively, `create a new issue <https://github.com/ojarva/sshpubkeys/issues/new>`_ or make `a pull request <https://github.com/ojarva/sshpubkeys/compare>`_ in github.
+to run test suite. If you have keys that are not parsed properly, or malformed keys that raise incorrect exception, please `create a new issue <https://github.com/cryptokeytools/cryptokeytools/issues/new>`_ or make `a pull request <https://github.com/cryptokeytools/cryptokeytools/compare>`_ in github.
