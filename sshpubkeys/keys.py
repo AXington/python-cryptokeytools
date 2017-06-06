@@ -118,14 +118,15 @@ class SSHKey(object):  # pylint:disable=too-many-instance-attributes
     def hash(self, alg):
         """ Calculate fingerprint using specified algorithm.
 
-        Available algorithms are 'md5', 'sha256', and 'sha512'.
+        Available algorithms are 'md5', 'sha1', 'sha256', and 'sha512'.
 
-        The 'md5' calculation comes from http://stackoverflow.com/questions/6682815/deriving-an-ssh-fingerprint-from-a-public-key-in-python
+        The 'sha1', and 'md5' calculation comes from
+        http://stackoverflow.com/questions/6682815/deriving-an-ssh-fingerprint-from-a-public-key-in-python
         For specification, see RFC4716, section 4.
         """
         fp_hash = getattr(hashlib, alg)(self._decoded_key)
 
-        if alg == 'md5':
+        if alg in ['md5', 'sha1']:
             fp_digest = fp_hash.hexdigest()
             fp_encoded = ':'.join(a + b for a, b in zip(fp_digest[::2], fp_digest[1::2]))
         else:
