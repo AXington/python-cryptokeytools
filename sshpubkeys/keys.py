@@ -124,6 +124,7 @@ class SSHKey(object):  # pylint:disable=too-many-instance-attributes
         http://stackoverflow.com/questions/6682815/deriving-an-ssh-fingerprint-from-a-public-key-in-python
         For specification, see RFC4716, section 4.
         """
+        alg = alg.lower()
         fp_hash = getattr(hashlib, alg)(self._decoded_key)
 
         if alg in ['md5', 'sha1']:
