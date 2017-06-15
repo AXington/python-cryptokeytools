@@ -115,33 +115,26 @@ class SSHKey(object):  # pylint:disable=too-many-instance-attributes
         for field in self.FIELDS:
             setattr(self, field, None)
 
-    def hash(self):
-        """ Calculate md5 fingerprint.
+    def hash(self, alg):
+        """ Calculate fingerprint using specified algorithm.
 
-        Deprecated, use .hash_md5() instead.
-        """
-        warnings.warn("hash() is deprecated. Use hash_md5(), hash_sha256() or hash_sha512() instead.")
-        return self.hash_md5().replace(b"MD5:", b"")
+        Available algorithms are 'md5', 'sha1', 'sha256', and 'sha512'.
 
-    def hash_md5(self):
-        """ Calculate md5 fingerprint.
-
-        Shamelessly copied from http://stackoverflow.com/questions/6682815/deriving-an-ssh-fingerprint-from-a-public-key-in-python
-
+        The 'sha1', and 'md5' calculation comes from
+        http://stackoverflow.com/questions/6682815/deriving-an-ssh-fingerprint-from-a-public-key-in-python
         For specification, see RFC4716, section 4.
         """
-        fp_plain = hashlib.md5(self._decoded_key).hexdigest()
-        return "MD5:" + ':'.join(a + b for a, b in zip(fp_plain[::2], fp_plain[1::2]))
+        alg = alg.lower()
+        fp_hash = getattr(hashlib, alg)(self._decoded_key)
 
-    def hash_sha256(self):
-        """ Calculate sha256 fingerprint. """
-        fp_plain = hashlib.sha256(self._decoded_key).digest()
-        return (b"SHA256:" + base64.b64encode(fp_plain).replace(b"=", b"")).decode("utf-8")
+        if alg in ['md5', 'sha1']:
+            fp_digest = fp_hash.hexdigest()
+            fp_encoded = ':'.join(a + b for a, b in zip(fp_digest[::2], fp_digest[1::2]))
+        else:
+            fp_digest = fp_hash.digest()
+            fp_encoded = base64.b64encode(fp_digest).replace(b"=", b"").decode("utf-8")
 
-    def hash_sha512(self):
-        """ Calculates sha512 fingerprint. """
-        fp_plain = hashlib.sha512(self._decoded_key).digest()
-        return (b"SHA512:" + base64.b64encode(fp_plain).replace(b"=", b"")).decode("utf-8")
+        return alg.upper() + ':' + fp_encoded
 
     def _unpack_by_int(self, data, current_position):
         """ Returns a tuple with (location of next data field, contents of requested data field). """

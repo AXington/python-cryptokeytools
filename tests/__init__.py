@@ -28,11 +28,11 @@ class TestKeys(unittest.TestCase):
         ssh = SSHKey(pubkey, **kwargs)
         ssh.parse()
         self.assertEqual(ssh.bits, bits)
-        self.assertEqual(ssh.hash_md5(), fingerprint_md5)
+        self.assertEqual(ssh.hash('md5'), fingerprint_md5)
         self.assertEqual(ssh.options_raw, options)
         self.assertEqual(ssh.comment, comment)
         if fingerprint_sha256 is not None:
-            self.assertEqual(ssh.hash_sha256(), fingerprint_sha256)
+            self.assertEqual(ssh.hash('sha256'), fingerprint_sha256)
 
     def check_fail(self, pubkey, expected_error, **kwargs):
         """ Checks that key check raises specified exception """
